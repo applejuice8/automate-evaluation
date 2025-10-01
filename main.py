@@ -17,7 +17,7 @@ class Evaluator():
 
     def prompt_stars(self):
         while True:
-            inp = input('How many stars (1-5)?')
+            inp = input('How many stars (1-5)? ')
             if inp.isdigit():
                 n_stars = int(inp)
                 if 1 <= n_stars <= 5:
@@ -72,16 +72,16 @@ class Evaluator():
 
     def main(self):
         urls = self.read_links('links.txt')
+        n_stars, comment = self.prompt_values()
 
         for url in urls:
             try:
                 self.get_page(url)
-                n_stars, comment = self.prompt_values()
                 self.rate_stars(n_stars)
                 self.fill_comment(comment)
                 self.submit()
-            except Exception as e:
-                print(f'Error encountered for link "{url}": {e}')
+            except Exception:
+                print(f'Error encountered for link "{url}".')
         self.driver.quit()
 
 if __name__ == '__main__':
