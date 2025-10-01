@@ -71,18 +71,20 @@ class Evaluator():
         self.driver.find_element(By.ID, 'submit0').click()
 
     def main(self):
-        urls = self.read_links('links.txt')
-        n_stars, comment = self.prompt_values()
+        try:
+            urls = self.read_links('links.txt')
+            n_stars, comment = self.prompt_values()
 
-        for url in urls:
-            try:
-                self.get_page(url)
-                self.rate_stars(n_stars)
-                self.fill_comment(comment)
-                self.submit()
-            except Exception:
-                print(f'Error encountered for link "{url}".')
-        self.driver.quit()
+            for url in urls:
+                try:
+                    self.get_page(url)
+                    self.rate_stars(n_stars)
+                    self.fill_comment(comment)
+                    self.submit()
+                except Exception:
+                    print(f'Error encountered for link "{url}".')
+        finally:
+            self.driver.quit()
 
 if __name__ == '__main__':
     evaluator = Evaluator(headless=False)
