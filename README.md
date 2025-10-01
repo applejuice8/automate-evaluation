@@ -16,8 +16,6 @@ pip install -r requirements.txt
 
 ## 🚀 Usage
 
-```bash
-python your_script_name.py
-```
+1. Execute the program.
 
-You will be prompted to input the number of stars and comment to be given to all links.
+2. You will be prompted to input the number of stars and comment to be given to all links.
