@@ -17,8 +17,19 @@ class EvaluationBot:
 
     def goto(self, url):
         self.page.goto(url)
+    
+    def get_title(self):
+        return self.page.locator('#survey_header').inner_text()
 
     def main(self):
         with open('links.txt', 'r') as f:
-            lines = f.readlines()
+            urls = f.readlines()
+            for url in urls:
+                try:
+                    self.goto(url)
+                    title = self.get_title()
+                except Exception as e:
+                    print(f'Error encountered at {title}')
+                    print(e)
+
 
